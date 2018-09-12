@@ -9,10 +9,18 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background(255);
 }
+
 function draw() {
-  let mouseSpeed = Math.abs(mouseY-pmouseY);
-  background(255);
-  fill(0);
+  let mouseSpeed = abs(mouseX-pmouseX);
+  fill(random(1,255),random(1,255),random(1,255));
   strokeWeight(mouseSpeed);
-  line(500,500,1000,500);
+  if(mouseIsPressed){
+    line(pmouseX,pmouseY,mouseX,mouseY);
+  }
+}
+
+function keyTyped(){
+  if(keyCode === 67){
+    background(255);
+  }
 }

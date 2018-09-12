@@ -7,21 +7,34 @@
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  x = 100
+  dx = 3.5
+  y = windowHeight;
+  dy = dx*2;
 }
 
-let startX = 20
-let startY = 400
-let ellipseX = ellipseX + dx
-let ellipseY = ellipseY + dy
-let dx = 5
-let dy = 8
+let x;
+let dx;
+let y;
+let dy;
+let circleWidth;
 
 function draw() {
   background(255)
-  ellipse(startX, startY, 30);
-  while (ellipseX < windowWidth - 30 || ellipseX > 0) {
-    ellipseX += dx;
-    ellipseY += dy;
-    if (ellipseY > )
+
+  x += dx;
+  y += dy;
+  circleWidth = 50;
+
+  if (x > width - circleWidth || x < 0){
+    dx = dx * -1;
   }
+
+  if (y < windowHeight/2 || y > windowHeight){
+    dy = dy * -1
+  }
+
+  fill(255,0,0);
+  ellipse(x, y, circleWidth);
 }
