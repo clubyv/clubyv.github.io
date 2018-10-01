@@ -35,6 +35,6 @@ function draw() {
     dy = dy * -1
   }
 
-  fill(255,0,0);
+  fill(random(255),random(255),random(255));
   ellipse(x, y, circleWidth);
 }
