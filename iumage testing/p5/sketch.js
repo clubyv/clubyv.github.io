@@ -6,7 +6,7 @@
 // - describe what you did to take this project "above and beyond"
 
 let steve;
-let scalar;
+let graySteve;
 
 function preload(){
   steve = loadImage('assets/steve.png');
@@ -14,26 +14,39 @@ function preload(){
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
   imageMode(CENTER);
 
-  scalar = 1.0;
+  image(steve, width/2, height/2);
+  graySteve = makeGrayscale(steve);
 }
 
 function draw() {
-  background(255);
-  moveImage();
+
 }
 
-function moveImage() {
-  image(steve,mouseX,mouseY, steve.width * scalar, steve.height * scalar);
-}
 
-function mouseWheel(event) {
-  if (event.delta > 0 && scalar < 3){
-    scalar *= 1.1;
-  }
-  if (event.delta < 0 && scalar > .1){
-    scalar *= 0.9;
-  }
+
+function makeGrayscale(sourceImage) {
+    let img = createImage(sourceImage.width, sourceImage.height);
+
+    sourceImage.loadPixels();
+    img.loadPixels();
+
+    for (let x = 0; x < img.width; x++) {
+      for (let y = 0; y < img.height; y ++){
+        let thisPixel = sourceImage.get(x, y);
+
+        let r = red(thisPixel);
+        let g = green(thisPixel);
+        let b = blue(thisPixel);
+
+        let average = (r+g+b)/3;
+
+        let newPixel = color(average, average, average);
+
+        img.set(x,y, newPixel);
+      }
+    }
+    img.updatePixels();
+    return img;
 }
